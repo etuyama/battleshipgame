@@ -5,13 +5,14 @@ import java.util.Random;
 
 
 public class BattleShipsManager {
-    private static List<String> illegalCoordinates = new ArrayList<>();
+    private static List<String> illegalCoordinates;
     private static final Random r = new Random();
     private static final List<Integer> bounds = Arrays.asList(0,1,2,3,4,5,6);
     private List<BattleShip> ships;
 
     public List<BattleShip> createShips() {
         ships = new ArrayList<>();
+        illegalCoordinates = new ArrayList<>();
         List<String> takenNames = new ArrayList<>();
         boolean canCreate = false;
         while (!canCreate) {
@@ -200,6 +201,14 @@ public class BattleShipsManager {
             }
         }
         return null;
+    }
+
+    public List<String> getAllShipCoordinates() {
+        List<String> coordinates = new ArrayList<>();
+        for (BattleShip ship : ships) {
+            coordinates.addAll(ship.getCoordinates());
+        }
+        return coordinates;
     }
 }
 
